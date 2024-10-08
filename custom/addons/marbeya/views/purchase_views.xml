@@ -1,0 +1,40 @@
+<odoo>
+    <!-- Inherit the Purchase Order Form View -->
+    <record id="view_purchase_order_form_inherited" model="ir.ui.view">
+        <field name="name">purchase.order.form.view.inherit.marbeya</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Target the tree view inside the Products page of the Purchase Order form -->
+            <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='name']" position="after">
+                <!-- Add the custom fields after the 'name' field in the tree view -->
+                <field name="length" />
+                <field name="width" />
+                <field name="area_sqm" />
+                <field name="total_area" />
+            </xpath>
+            
+            <xpath expr="//page[@name='products']/group[1]/group[2]/field[@name='tax_totals']" position="attributes">
+                <!-- Display the correctly calculated tax totals -->
+                <field name="tax_totals" widget="account-tax-totals-field" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
+<!-- 
+<xpath expr="//group[@class='oe_subtotal_footer']/field[@name='amount_total']" position="replace">
+    
+    <field name="amount_total" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1" />
+</xpath>
+
+<xpath expr="//group[@class='oe_subtotal_footer']/field[@name='amount_untaxed']" position="replace">
+    
+    <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1" />
+</xpath>
+
+Ensure we are updating the correct subtotal and tax totals display 
+<xpath expr="//page[@name='products']/group[1]/group[2]/field[@name='tax_totals']" position="replace">
+Display the correctly calculated tax totals
+<field name="tax_totals" widget="account-tax-totals-field" readonly="1" />
+</xpath>
+ -->
