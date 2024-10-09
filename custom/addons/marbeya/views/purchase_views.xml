@@ -10,31 +10,10 @@
                 <!-- Add the custom fields after the 'name' field in the tree view -->
                 <field name="length" />
                 <field name="width" />
-                <field name="area_sqm" />
-                <field name="total_area" />
+                <field name="count_of_slabs"/>
             </xpath>
             
-            <xpath expr="//page[@name='products']/group[1]/group[2]/field[@name='tax_totals']" position="attributes">
-                <!-- Display the correctly calculated tax totals -->
-                <field name="tax_totals" widget="account-tax-totals-field" readonly="1" />
-            </xpath>
+           
         </field>
     </record>
 </odoo>
-<!-- 
-<xpath expr="//group[@class='oe_subtotal_footer']/field[@name='amount_total']" position="replace">
-    
-    <field name="amount_total" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1" />
-</xpath>
-
-<xpath expr="//group[@class='oe_subtotal_footer']/field[@name='amount_untaxed']" position="replace">
-    
-    <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1" />
-</xpath>
-
-Ensure we are updating the correct subtotal and tax totals display 
-<xpath expr="//page[@name='products']/group[1]/group[2]/field[@name='tax_totals']" position="replace">
-Display the correctly calculated tax totals
-<field name="tax_totals" widget="account-tax-totals-field" readonly="1" />
-</xpath>
- -->
