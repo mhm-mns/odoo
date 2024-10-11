@@ -1,0 +1,22 @@
+<odoo>
+    <!-- Inherit the existing purchase order report template -->
+    <template id="report_purchase_order_inherit" inherit_id="purchase.report_purchaseorder_document">
+        <!-- Add new columns to the table header (inside <thead>) -->
+        <xpath expr="//table[@class='table table-sm o_main_table table-borderless mt-4']/thead/tr" position="after">
+            <tr>
+                <th>Length (cm)</th>
+                <th>Width (cm)</th>
+                <th>Count of Slabs (NOS)</th>
+                <th>Total Area (sqm)</th>
+            </tr>
+        </xpath>
+
+        <!-- Add the new fields in the order lines (inside <tbody>) -->
+        <xpath expr="//table[@class='table table-sm o_main_table table-borderless mt-4']/tbody/tr[not(@class)]/td[1]" position="before">
+            <td t-field="line.length"/>
+            <td t-field="line.width"/>
+            <td t-field="line.count_of_slabs"/>
+            <td t-field="line.product_qty"/>
+        </xpath>
+    </template>
+</odoo>
