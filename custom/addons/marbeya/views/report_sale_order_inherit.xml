@@ -1,0 +1,27 @@
+<odoo>
+    <!-- Inherit the existing purchase order report template -->
+    <template id="report_sale_order_inherit" inherit_id="sale.report_saleorder_document">
+
+        <!-- Add new columns to the table header (inside <thead>) -->
+        <xpath expr="//table[@class='table table-sm o_main_table table-borderless mt-4']/thead/tr/th[@name='th_description']" position="after">
+            <t t-set="display_count_of_slabs" t-value="any(l.count_of_slabs for l in lines_to_report)"/>
+            <th>Dimensions LxWxH (cm)</th>
+            <th t-if="display_count_of_slabs">slabs</th>
+        </xpath>
+
+        <!-- Add the new fields in the order lines (inside <tbody>) -->
+        <xpath expr="//span[@t-field='line.name']" position="after">
+            <td t-if="line.length">
+                <span class="text-end" t-field="line.length"></span>
+                x
+                <span class="text-end" t-field="line.width"></span>
+                x
+                <span class="text-end" t-field="line.product_id.thickness"></span>
+            </td>
+            <td t-if="line.count_of_slabs > 0">
+                <span class="text-end" t-field="line.count_of_slabs"></span>
+            </td>
+            
+        </xpath>
+    </template>
+</odoo>

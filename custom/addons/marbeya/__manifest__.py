@@ -10,7 +10,7 @@ This is customized version of products that fits MarbeyaUG factory
         'views/product_views.xml',
         'views/sale_views.xml',
         'views/purchase_views.xml',
-        # 'views/report_purchase_order_inherit.xml',
+        'views/report_sale_order_inherit.xml',
         
     ],
     'demo': [
